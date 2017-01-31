@@ -37,10 +37,27 @@
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors' first and last names
+    // map will always return the same # of items you give it, whereas filter can take in 10 but only return 3
     const names = inventors.map(inventor => (inventor.first + " " + inventor.last));
     console.log(names);
+
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+    const ordered = inventors.sort(function(firstPerson, secondPerson) {
+      if(firstPerson.year > secondPerson.year) {
+        return 1;
+      } else {
+        return -1;
+      }
+    });
+
+    console.table(ordered);
+
+        
+      
+    
+
+    
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live?
