@@ -75,7 +75,6 @@ function removeTransition(e) {
 
 const keys = document.querySelectorAll('.key');
 keys.forEach(key => key.addEventListener('transitionend',removeTransition)); // skip it if it's not a transform
-
 window.addEventListener('keydown', playSound);
 </script>
 
