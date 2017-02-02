@@ -61,20 +61,19 @@
       margin:0;
       width: 100%;
       transition:transform 0.5s;
-      border: 1px solid red;
       flex: 1 0 auto;
       display: flex;
       justify-content: center;
       align-items: center;
     }
     /*puts the first child off of the screen to the top*/
-    .panel > *:first-child{ transform: translateY(-100%)}; 
+    .panel > *:first-child{ transform: translateY(-100%);} 
     /*when the .panel has open-active class on it, it comes back into view*/
-    .panel.open-active > *:first-child{ transform: translateY(0)};
+    .panel.open-active > *:first-child{ transform: translateY(0);}
     /*puts the last child off of the screen to the bottom*/
-    .panel > *:last-child{ transform: translateY(100%)};
+    .panel > *:last-child{ transform: translateY(100%);}
     /*when the .panel has open-active class on it, it comes back into view*/
-    .panel.panel.open-active > *:last-child{ transform: translateY(0)};
+    .panel.open-active > *:last-child{ transform: translateY(0);}
 
     .panel p {
       text-transform: uppercase;
@@ -134,7 +133,15 @@
       this.classList.toggle('open');
     }
 
+    function toggleActive(e) {
+      console.log(e.propertyName);
+      if(e.propertyName.includes('flex')) {
+        this.classList.toggle('open-active');
+      }
+    }
+
     panels.forEach(panel => panel.addEventListener('click', toggleOpen)); //add event listener on each panel that runs the toggleOpen function
+    panels.forEach(panel => panel.addEventListener('transitionend', toggleActive)); //listens for the transitionend event and runs toggleActive function
   </script>
 
 
