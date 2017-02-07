@@ -18,7 +18,15 @@
 const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
 const cities = [];
 
-fetch(endpoint).then(blob => blob.json());
+fetch(endpoint) //fetches the endpoint that's been defined as a const above
+    .then(blob => blob.json()) //returns a promise we're calling blob that we can then call the .json method on
+    .then(data => cities.push(...data)); //that returns a promise that we call the push method on with ... being the 
+                    // direction to spread the data out in the array (since cities is an array) instead of making
+                    //a new array for each item
+
+function findMatches(wordToMatch, cities) //make a function called findMatches that takes 2 parameters
+                    // the wordToMatch, and the cities array
+                    
 </script>
   </body>
 </html>
