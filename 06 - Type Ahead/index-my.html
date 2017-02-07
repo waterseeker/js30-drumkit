@@ -26,7 +26,11 @@ fetch(endpoint) //fetches the endpoint that's been defined as a const above
 
 function findMatches(wordToMatch, cities) //make a function called findMatches that takes 2 parameters
                     // the wordToMatch, and the cities array
-                    
+        const regex = new RegExp(wordToMatch, 'gi'); //the g is for global, the i is for matches regardles of case
+        return cities.filter(place => {
+            //here we figure out if what was typed matches something in the array
+        return place.city.match(regex)
+        });
 </script>
   </body>
 </html>
