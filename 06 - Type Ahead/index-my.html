@@ -31,10 +31,26 @@ const cities = [];
             //here we figure out if what was typed matches something in the array
         return place.city.match(regex) || place.state.match(regex)
         });
+    
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
 
     function displayMatches() {
-        console.log(this.value);
-    }
+        const matchArray = findMatches(this.value, cities);
+        const html = matchArray.map(place => {
+            const regex = new RegExp(this.value, 'gi');
+            const cityName = place.city.replace(regex, `<span class="hl">${this.value}</span>`);//replaces the regex with a span with the class of hl (highlight)
+            const stateName = place.state.replace(regex, `<span class="hl">${this.value}</span>`);
+            return `
+                <li>
+                    <span class="name">${cityName}, ${stateName}</span>
+                    <span class="population">${numberWithCommas(place.population)}</span>
+                </li>
+            `;
+        }).join();//.join turns the return into a string from an array
+        suggestions.innerHTML = html;
+    };
     
     const searchInput = document.querySelector('.search');
     const searchInput = document.querySelector('.suggestions');
