@@ -24,14 +24,16 @@ const cities = [];
                     // direction to spread the data out in the array (since cities is an array) instead of making
                     //a new array for each item
 
-    function findMatches(wordToMatch, cities) //make a function called findMatches that takes 2 parameters
+    function findMatches(wordToMatch, cities) {//make a function called findMatches that takes 2 parameters
                     // the wordToMatch, and the cities array
-        const regex = new RegExp(wordToMatch, 'gi'); //the g is for global, the i is for matches regardles of case
+        
         return cities.filter(place => {
+            const regex = new RegExp(wordToMatch, 'gi'); //the g is for global, the i is for matches regardles of case
             //here we figure out if what was typed matches something in the array
-        return place.city.match(regex) || place.state.match(regex)
+            return place.city.match(regex) || place.state.match(regex)
         });
-    
+    }
+
     function numberWithCommas(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
@@ -53,7 +55,7 @@ const cities = [];
     };
     
     const searchInput = document.querySelector('.search');
-    const searchInput = document.querySelector('.suggestions');
+    const suggestions = document.querySelector('.suggestions');
 
     searchInput.addEventListener('change', displayMatches); //listens for the change event, then runs the displayMatches function
     searchInput.addEventListener('keyup', displayMatches); //needs an event listener for keyup event so you don't have
