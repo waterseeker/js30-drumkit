@@ -18,19 +18,30 @@
 const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
 const cities = [];
 
-fetch(endpoint) //fetches the endpoint that's been defined as a const above
-    .then(blob => blob.json()) //returns a promise we're calling blob that we can then call the .json method on
-    .then(data => cities.push(...data)); //that returns a promise that we call the push method on with ... being the 
+    fetch(endpoint) //fetches the endpoint that's been defined as a const above
+        .then(blob => blob.json()) //returns a promise we're calling blob that we can then call the .json method on
+        .then(data => cities.push(...data)); //that returns a promise that we call the push method on with ... being the 
                     // direction to spread the data out in the array (since cities is an array) instead of making
                     //a new array for each item
 
-function findMatches(wordToMatch, cities) //make a function called findMatches that takes 2 parameters
+    function findMatches(wordToMatch, cities) //make a function called findMatches that takes 2 parameters
                     // the wordToMatch, and the cities array
         const regex = new RegExp(wordToMatch, 'gi'); //the g is for global, the i is for matches regardles of case
         return cities.filter(place => {
             //here we figure out if what was typed matches something in the array
-        return place.city.match(regex)
+        return place.city.match(regex) || place.state.match(regex)
         });
+
+    function displayMatches() {
+        console.log(this.value);
+    }
+    
+    const searchInput = document.querySelector('.search');
+    const searchInput = document.querySelector('.suggestions');
+
+    searchInput.addEventListener('change', displayMatches); //listens for the change event, then runs the displayMatches function
+    searchInput.addEventListener('keyup', displayMatches); //needs an event listener for keyup event so you don't have
+        //to click outside the input box for the funciton to run
 </script>
   </body>
 </html>
