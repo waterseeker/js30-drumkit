@@ -54,6 +54,14 @@
     const index = comments.findIndex(comment => comment.id ===
         823423);
         console.log({index});
+
+    //comments.splice(index, 1); one way to delete that particular comment from the array
+
+    const newComments = [
+        ...comments.slice(0, index), //...spreads the comments into a new array. else it would give an array or arrays
+        ...comments.slice(index +1)
+    ];
+    
   </script>
 </body>
 </html>
